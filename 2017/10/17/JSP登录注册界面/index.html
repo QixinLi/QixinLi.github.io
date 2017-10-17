@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://QixinLi.github.io">
-  <title>Tag: 前端 | QixinLi&#39; Blog</title>
+  <title>利用阿里云服务器实现JSP语言下的登录注册界面 | QixinLi&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="程序猿,暴雪玩家,美剧粉,东野死忠">
-<meta property="og:type" content="website">
-<meta property="og:title" content="QixinLi&#39; Blog">
-<meta property="og:url" content="http://QixinLi.github.io/tags/前端/index.html">
+  <meta name="keywords" content="服务器技术,前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用阿里云服务器实现JSP语言下的登录注册界面">
+<meta property="og:url" content="http://QixinLi.github.io/2017/10/17/JSP登录注册界面/index.html">
 <meta property="og:site_name" content="QixinLi&#39; Blog">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508255071870&di=1abc50cb62bb2fe049cd5e83ab6eeedb&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201501%2F03%2F20150103114452_XJJna.png">
+<meta property="og:updated_time" content="2017-10-17T15:00:41.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QixinLi&#39; Blog">
+<meta name="twitter:title" content="利用阿里云服务器实现JSP语言下的登录注册界面">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508255071870&di=1abc50cb62bb2fe049cd5e83ab6eeedb&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201501%2F03%2F20150103114452_XJJna.png">
   
     <link rel="alternative" href="/atom.xml" title="QixinLi&#39; Blog" type="application/atom+xml">
   
@@ -159,36 +162,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JSP登录注册界面" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/17/JSP登录注册界面/" class="archive-article-date">
-  	<time datetime="2017-10-17T12:54:55.151Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/17/JSP登录注册界面/">利用阿里云服务器实现JSP语言下的登录注册界面</a>
+    <h1 class="article-title" itemprop="name">
+      利用阿里云服务器实现JSP语言下的登录注册界面
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/17/JSP登录注册界面/" class="archive-article-date">
+  	<time datetime="2017-10-17T12:54:55.151Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508255071870&di=1abc50cb62bb2fe049cd5e83ab6eeedb&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201501%2F03%2F20150103114452_XJJna.png">
+<a id="more"></a>
+<p>##前言</p>
+<p>前几天刚刚在服务器上搭建好了数据库，在测试可用后便开始着手写一个玩家的登录注册页面。</p>
+<p>半成品：<a href="http://106.14.151.117:8080/loginIn/WebContent/login.jsp" target="_blank" rel="external">Demo页面</a></p>
+<p>##过程</p>
+<p>#1、首先，创建出登录界面login.jsp，并写好当前界面的样式。<br><figure class="highlight html"><figcaption><span>body标签</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"bg"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> =<span class="string">"loginCh.jsp"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"login"</span> <span class="attr">class</span>=<span class="string">"absol"</span>&gt;</span></div><div class="line">            </div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"logo"</span> <span class="attr">class</span>=<span class="string">"absol"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/logo.png"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"usernameimg"</span> <span class="attr">class</span>=<span class="string">"absol"</span> &gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/mobileicon.png"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"passwordimg"</span> <span class="attr">class</span>=<span class="string">"absol"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/keyicon.png"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">placeholder</span>=<span class="string">"手机号"</span> <span class="attr">class</span>=<span class="string">"absol"</span> <span class="attr">maxlength</span>=<span class="string">11</span> <span class="attr">autocomplete</span>=<span class="string">"new-password"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password1"</span>  <span class="attr">style</span>=<span class="string">"display:none"</span>/&gt;</span>   </div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"密码"</span> <span class="attr">class</span>=<span class="string">"absol"</span> <span class="attr">autocomplete</span>=<span class="string">"new-password"</span>&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"signin"</span> <span class="attr">class</span>=<span class="string">"absol"</span> <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"signup"</span> <span class="attr">class</span>=<span class="string">"absol"</span>&gt;</span>还没有账号？ <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:#ffffff"</span> <span class="attr">onclick</span>=<span class="string">"clickSignUpBt()"</span>&gt;</span>马上注册<span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>主要通过CSS3制定样式，JQuery辅助动态调节控件大小。<br><figure class="highlight javascript"><figcaption><span>JS制定样式自适应所有屏幕大小</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AutoLoad</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    changeWindowAuto();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeWindowAuto</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> width=$(<span class="built_in">window</span>).width();</div><div class="line">    <span class="keyword">var</span> height=$(<span class="built_in">window</span>).height();</div><div class="line">    <span class="keyword">var</span> panelwidth;</div><div class="line">    $(<span class="string">"#bg"</span>).css(&#123;</div><div class="line">        <span class="string">"height"</span>:height</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(width&gt;<span class="number">360</span>)</div><div class="line">    &#123;</div><div class="line">        panelwidth=<span class="number">360</span>;</div><div class="line">        <span class="keyword">var</span> left=(width<span class="number">-360</span>)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">var</span> top=(height<span class="number">-636</span>)/<span class="number">2</span>;</div><div class="line">        $(<span class="string">"#login"</span>).css(&#123;</div><div class="line">            <span class="string">"width"</span>:<span class="string">"360px"</span>,</div><div class="line">            <span class="string">"height"</span>:<span class="string">"636px"</span>,</div><div class="line">            <span class="string">"top"</span>:top+<span class="string">"px"</span>,</div><div class="line">            <span class="string">"left"</span>:left+<span class="string">"px"</span>,</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        panelwidth=width;</div><div class="line">        $(<span class="string">"#login"</span>).css(&#123;</div><div class="line">            <span class="string">"width"</span>:width,</div><div class="line">            <span class="string">"height"</span>:height,</div><div class="line">            <span class="string">"top"</span>:<span class="string">"0px"</span>,</div><div class="line">            <span class="string">"left"</span>:<span class="string">"0px"</span>,</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $(<span class="string">"#logo"</span>).css(&#123;</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.52222</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.50276243</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.2416667</span>,</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">0.205556</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#username"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.02209945</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.0805556</span>,</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.1444</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.686111</span>,</div><div class="line">        <span class="string">"font-size"</span>:panelwidth*<span class="number">0.05</span>,</div><div class="line">        <span class="string">"padding-left"</span>:panelwidth*<span class="number">0.1527778</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#password"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.17222</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.0805556</span>,</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.1444</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.686111</span>,</div><div class="line">        <span class="string">"font-size"</span>:panelwidth*<span class="number">0.05</span>,</div><div class="line">        <span class="string">"padding-left"</span>:panelwidth*<span class="number">0.1527778</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#usernameimg"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.047222</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.116667</span>,</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.097222</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.063889</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#passwordimg"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.2</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.116667</span>,</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.097222</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.063889</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#signin"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.47778</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.0805556</span>,</div><div class="line">        <span class="string">"height"</span>:panelwidth*<span class="number">0.1444</span>,</div><div class="line">        <span class="string">"width"</span>:panelwidth*<span class="number">0.838889</span>,</div><div class="line">        <span class="string">"font-size"</span>:panelwidth*<span class="number">0.05</span>,</div><div class="line">    &#125;);</div><div class="line">    $(<span class="string">"#signup"</span>).css(&#123;</div><div class="line">        <span class="string">"top"</span>:panelwidth*<span class="number">1.675</span>,</div><div class="line">        <span class="string">"left"</span>:panelwidth*<span class="number">0.258333</span>,</div><div class="line">        <span class="string">"font-size"</span>:panelwidth*<span class="number">0.04444</span>,</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><figcaption><span>CSS打造自定义样式</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'黑体'</span>;</div><div class="line">&#125; </div><div class="line"></div><div class="line"></div><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">pointer-events</span>: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">input-webkit-autofill</span>&#123;</div><div class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0px</span> <span class="number">1000px</span> white inset;</div><div class="line">  <span class="attribute">-webkit-text-fill-color</span>: <span class="number">#333</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.absol</span>&#123;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.button</span>&#123;</div><div class="line">    <span class="attribute">pointer-events</span>: auto;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#bg</span>&#123;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../images/bg.jpg"</span>);</div><div class="line">    <span class="attribute">background-size</span>: cover;</div><div class="line">    <span class="attribute">overflow</span>:auto;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#login</span>&#123;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"../images/panelbg.png"</span>);</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#username</span>,<span class="selector-id">#password</span>&#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">padding-left</span>: <span class="number">1.5rem</span>;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">1.5rem</span>;</div><div class="line">    <span class="attribute">background</span>: transparent;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#FFFFFF</span>;</div><div class="line">    <span class="attribute">border</span>: none;</div><div class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="built_in">rgba</span>(255, 255, 255, 0.2);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#signin</span>&#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#ff3366</span>;</div><div class="line">    <span class="attribute">border-radius</span>:<span class="number">30px</span>;</div><div class="line">    <span class="attribute">border</span>:none;</div><div class="line">    <span class="attribute">color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.8);</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">display</span>: table-cell;</div><div class="line">    <span class="attribute">vertical-align</span>:middle;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#signup</span>&#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#ABA8AE</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#2、创建新的.jsp文件loginCh.jsp，验证login.jsp表单中的账号信息</p>
+<figure class="highlight java"><figcaption><span>主要代码段</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;%</div><div class="line">String iscorrect=<span class="string">"0"</span>;</div><div class="line">String username=<span class="keyword">null</span>;</div><div class="line">%&gt;</div><div class="line">    &lt;%</div><div class="line">            String DBDRIVER=<span class="string">"net.sourceforge.jtds.jdbc.Driver"</span>;</div><div class="line">            String DBURL=<span class="string">"jdbc:jtds:sqlserver://106.14.151.117:1433/Database"</span>;</div><div class="line">            String DBUSER=<span class="string">"*数据库账号"</span>;</div><div class="line">            String PASSWORD=<span class="string">"*数据库密码"</span>;</div><div class="line">            String Tel = request.getParameter(<span class="string">"username"</span>);</div><div class="line">            String loginKey = request.getParameter(<span class="string">"password"</span>);</div><div class="line">            String sql = <span class="string">"SELECT name FROM Player WHERE Tel = '"</span>+Tel+<span class="string">"'"</span>+<span class="string">" and loginkey = '"</span>+loginKey+<span class="string">"'"</span>;</div><div class="line">            <span class="keyword">try</span>&#123;</div><div class="line">                Class.forName(DBDRIVER);</div><div class="line">                Connection cn=DriverManager.getConnection(DBURL,DBUSER,PASSWORD);</div><div class="line">                Statement st=cn.createStatement();</div><div class="line">                ResultSet rs=st.executeQuery(sql);</div><div class="line">                <span class="keyword">if</span>(rs.next())&#123;</div><div class="line">                    iscorrect=<span class="string">"1"</span>;</div><div class="line">                    username=rs.getString(<span class="string">"name"</span>);</div><div class="line">                    out.print(<span class="string">"欢迎您！"</span>+username);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    response.sendRedirect(<span class="string">"login.jsp?errNo"</span>);<span class="comment">//密码不对返回到登陆  </span></div><div class="line">                &#125;</div><div class="line">                rs.close();<span class="comment">//关闭结果集</span></div><div class="line">                cn.close();<span class="comment">//关闭操作</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">catch</span>(Exception ex)&#123;</div><div class="line">                System.out.println(ex.getMessage());</div><div class="line">                System.out.println(<span class="string">"连接异常"</span>);</div><div class="line">                ex.printStackTrace();</div><div class="line">            &#125;</div><div class="line">    %&gt;</div></pre></td></tr></table></figure>
+<p>通过连接服务器端的数据库检索用户输入的账号密码信息，如果re.next()返回值为true，代表检索到了数据，则证明验证通过。反之，则说明在数据库中不存在用户所输入的用户信息，从而将错误信息传给login.jsp，返回之前页面输出错误信息。</p>
+<p>#3、注册页面与之亦同</p>
+<p>只不过sql数据库上用来验证的select语句修改为insert<br><figure class="highlight java"><figcaption><span>主要代码段</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PreparedStatement tmt = cn.prepareStatement(<span class="string">"Insert into Player values('"</span> + username + <span class="string">"','"</span> + password + <span class="string">"','"</span> + email + <span class="string">"','"</span> + name + <span class="string">"',0,0,'无',0,0,0)"</span>);</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -204,7 +250,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -217,75 +263,118 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://QixinLi.github.io/2017/10/17/JSP登录注册界面/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/02/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-02T10:08:44.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/17/Aliyun-JSP-login/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在阿里云ECS服务器上搭建数据库</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/code/" class="article-tag-list-link color5">code</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+  <!-- UY BEGIN -->
+    <section id="comments">
+        <!-- 来必力City版安装代码 -->
+        	<p style="color:#706c6c ;text-align:center;">来必力目前使用QQ或微信登录会有bug，建议大家使用微博或其他社交账号登录。</p>
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk0NS82NTEw">
+          <script type="text/javascript">
+           (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
 
+               if (typeof LivereTower === 'function') { return; }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+    <!-- City版安装代码已完成 -->
+    </section>
+  <!-- UY END -->
 
 
           </div>
@@ -308,9 +397,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
