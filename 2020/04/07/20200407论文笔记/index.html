@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://QixinLi.github.io">
-  <title>Archives: 2017/8 | QixinLi&#39;s Blog</title>
+  <title>论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记 | QixinLi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="程序猿,暴雪玩家,美剧粉,东野死忠">
-<meta property="og:type" content="website">
-<meta property="og:title" content="QixinLi&#39;s Blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;qixinli.github.io&#x2F;archives&#x2F;2017&#x2F;08&#x2F;index.html">
+  <meta name="keywords" content="AAAI2019">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记">
+<meta property="og:url" content="http:&#x2F;&#x2F;qixinli.github.io&#x2F;2020&#x2F;04&#x2F;07&#x2F;20200407%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="QixinLi&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407230831.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%871.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%872.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%873.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%874.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407232403.png">
+<meta property="og:updated_time" content="2020-04-07T15:38:11.710Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407230831.png">
   
     <link rel="alternative" href="/atom.xml" title="QixinLi&#39;s Blog" type="application/atom+xml">
   
@@ -158,156 +166,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20200407论文笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记
+    </h1>
+  
+
+        
+        <a href="/2020/04/07/20200407%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-04-07T14:56:18.251Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/QQ%E6%88%AA%E5%9B%BE20200407230831.png" class="">
+<a id="more"></a>
+<p>为短文本对话生成多样的回复<br>这是由苏大和腾讯AI lab合作的一篇文章<br>目前发表在AAAI2019<br><a href="https://ai.tencent.com/ailab/nlp/dialogue/" target="_blank" rel="noopener">论文及代码</a></p>
+<h2 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h2><p>在短文本生成任务上，业界普遍的做法就是seq2seq模型，他是将模型的输入和输出建立为一对一的映射。<br>但是在实际场景中，一个输入往往有多个回复，也就是一对多的映射。</p>
+<p>例如：微博、Twitter</p>
+<p><li>输入：“让我们共同庆祝哈工大百年校庆”</p>
+<p><li>输出：“哈工大，我的母校”、“百年名校，再创辉煌”、“生日快乐，哈工大”</p>
+<h2 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h2><h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><p>首先介绍一下作者对这个问题的建模。<br>训练数据为{(x,{y})}，其中一个x对应多个y。<br>此外，为了降低训练难度，作者在输入x和输出y之间加入了一个隐变量z。也就是说先由x生成多个z，再由x和z生成对应的y。<br>那么这个隐变量z需要满足两个条件。<br>可解释性：它可以体现其与输入x以及输出{y}之间的相关性。<br>有区分度：z应该能够捕获句子级别的差异。也就是说，给定不同的x时，推断出的z可以是不同的，而给定不同的z时，生成的输出y也是不同的。<br>为了满足这两个条件，这里使用一个隐空间大Z来作为词汇表。<br>第一个条件我们可以直接检索xzy文本上的相关性。<br>对于第二个条件，词汇表大Z为给定的x定义了足够大的隐空间，这样就可以选择多个不同的z来生成多个响应。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>下面介绍一下本文使用的模型架构</p>
+<img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/%E5%9B%BE%E7%89%871.png" class="">
+<p>本文主要使用了两个网络，一个是潜在词推断网络，还有一个是生成网络。<br>在潜在词推断网络中，作者用一个双向的GRU去编码输入x，再过一个softmax去计算z的概率分布。<br>在生成网络中，首先也是将x过一个双向GRU去编码，此外，将z过一层嵌入层和一层全连接层，获得z的编码表示。然后利用这两种表示经过GRU解码单元来解码输出序列y。<br>对于每一个y计算nll loss，本文中对loss有两种取法，一种是计算均值，另一种是取最小值。<br>对此，我们常见的做法是取均值，但作者考虑到在多个y中，与z最相关的应该loss最小，因此还采用了最小值函数。<br>当然，最终实验证明，取最小值的效果确实不错。</p>
+<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/%E5%9B%BE%E7%89%872.png" class="">
+<p>值得一提的是，作者这里使用强化学习的方法进行联合训练。<br>在任务一中，作者使用Policy Gradient(策略梯度)去优化这个过程。<br>任务二中，通过计算预测的y和ground truth y之间的f值作为reward，再通过策略梯度去更新网络参数。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="微博"><a href="#微博" class="headerlink" title="微博"></a>微博</h3><img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/%E5%9B%BE%E7%89%873.png" class="">
+<p>我们可以看到，在微博的测试结果上，本文提出的模型的BLEU值并不如HGFU模型，但也能排在第二。<br>作者认为，BLEU是评估生成的答案与给定答案之间有多少重叠词。但在开放域对话中，与答案不符的可能不一定很差。</p>
+<h3 id="Twitter"><a href="#Twitter" class="headerlink" title="Twitter"></a>Twitter</h3><img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/%E5%9B%BE%E7%89%874.png" class="">
+<p>在推特上的结果就比较不错了，Avg和Min包揽各项指标前二，而且比其他模型都高出很多。</p>
+<h3 id="样例对比"><a href="#样例对比" class="headerlink" title="样例对比"></a>样例对比</h3><img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/QQ%E6%88%AA%E5%9B%BE20200407232403.png" class="">
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/04/AfterWatchDespicableMe3/" class="archive-article-date">
-  	<time datetime="2017-08-04T09:42:07.105Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/04/AfterWatchDespicableMe3/">神偷奶爸3——打动我的，并不是剧情</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">AAAI2019</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/03/HexoAddComments/" class="archive-article-date">
-  	<time datetime="2017-08-03T09:48:13.991Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/03/HexoAddComments/">Hexo在文章底端添加评论框</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/02/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-02T10:08:44.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/code/" class="article-tag-list-link color5">code</a>
+        			<a href="/categories/论文笔记/" class="article-tag-list-link color5">论文笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://qixinli.github.io/2020/04/07/20200407%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/13/ShortCuts/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">捷径App——使iOS12用户的生产力爆炸式提升的神器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  <!-- UY BEGIN -->
+    <section id="comments">
+        <!-- 来必力City版安装代码 -->
+        	<p style="color:#706c6c ;text-align:center;">来必力目前使用QQ或微信登录会有bug，建议大家使用微博或其他社交账号登录。</p>
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk0NS82NTEw">
+          <script type="text/javascript">
+           (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+    <!-- City版安装代码已完成 -->
+    </section>
+  <!-- UY END -->
 
 
           </div>
@@ -330,8 +400,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

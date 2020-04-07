@@ -199,27 +199,27 @@
 <a id="more"></a>
 <h1 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h1><h2 id="项目功能介绍"><a href="#项目功能介绍" class="headerlink" title="项目功能介绍"></a>项目功能介绍</h2><p>该项目旨在实现“个性化门户主页”。其功能包括：用户注册、登录，动态化背景，用户查看主页资讯。其中，主页资讯包括今日详情（万年历、天气预报），头条新闻，趣图轶事，NBA赛事，星座运势。</p>
 <h2 id="项目所用到的开发技术"><a href="#项目所用到的开发技术" class="headerlink" title="项目所用到的开发技术"></a>项目所用到的开发技术</h2><p>Node.js，MongoDB，WebIDE（Cloud Studio），Ajax，Servlet，J2EE，JQuery，JavaScript，CSS3，HTML5等。</p>
-<h2 id="项目功能需求分析"><a href="#项目功能需求分析" class="headerlink" title="项目功能需求分析"></a>项目功能需求分析</h2><ol><li>通过MongoDB数据库实现用户的注册登录功能。<br></li><li>利用Canvas动态生成验证码。<br></li><li>注册、登录过程中加以用户输入的有效性验证。<br></li><li>利用Node.js驱动web服务，并通过mongoose组件连接数据库。<br></li><li>通过Ajax实现C/S异步操作，调用聚合数据API以丰富主页内容。主页板块包括（万年历、天气预报、今日头条、趣图、NBA赛事、星座运势）。<br></li><li>通过J2EE下的Servlet，在本地做一个中转，将聚合数据中部分不支持直接传输jsonp格式的api接口转换成jsonp格式，并在客户端通过Ajax调用。<br></li><li>调用canvas_net，实现网页动态背景。<br></li><li>整个项目托管在Coding.net，利用其自带的git进行多人协作开发。<br></li><li>在Cloud Studio云计算平台上进行编程，将整个项目部署在云端。<br></li><li>其他需求。例如：保证用户界面的友好和美观，数据排版合理等。</li></ol>
+<h2 id="项目功能需求分析"><a href="#项目功能需求分析" class="headerlink" title="项目功能需求分析"></a>项目功能需求分析</h2><ol><li>通过MongoDB数据库实现用户的注册登录功能。<br><li>利用Canvas动态生成验证码。<br><li>注册、登录过程中加以用户输入的有效性验证。<br><li>利用Node.js驱动web服务，并通过mongoose组件连接数据库。<br><li>通过Ajax实现C/S异步操作，调用聚合数据API以丰富主页内容。主页板块包括（万年历、天气预报、今日头条、趣图、NBA赛事、星座运势）。<br><li>通过J2EE下的Servlet，在本地做一个中转，将聚合数据中部分不支持直接传输jsonp格式的api接口转换成jsonp格式，并在客户端通过Ajax调用。<br><li>调用canvas_net，实现网页动态背景。<br><li>整个项目托管在Coding.net，利用其自带的git进行多人协作开发。<br><li>在Cloud Studio云计算平台上进行编程，将整个项目部署在云端。<br><li>其他需求。例如：保证用户界面的友好和美观，数据排版合理等。</ol>
 
 <h1 id="项目开发细节"><a href="#项目开发细节" class="headerlink" title="项目开发细节"></a>项目开发细节</h1><h2 id="开发技术难点"><a href="#开发技术难点" class="headerlink" title="开发技术难点"></a>开发技术难点</h2><h3 id="MVC框架下Node-js脚本语言开发"><a href="#MVC框架下Node-js脚本语言开发" class="headerlink" title="MVC框架下Node.js脚本语言开发"></a>MVC框架下Node.js脚本语言开发</h3><p>利用Node.js连接数据库，并设置一个Schema与数据库关联，此Schema则作为项目的模型（Model）。<br>Node.js驱动路由，连接html文件。所有html文件作为项目的视图（View）。<br>用Node.js实现网页的动态编程（包括驱动服务器、数据库操作等）。作为项目的控制器（Controller）。</p>
 <h3 id="Node-js远程连接数据库"><a href="#Node-js远程连接数据库" class="headerlink" title="Node.js远程连接数据库"></a>Node.js远程连接数据库</h3><p>由于Cloud Studio所提供的云主机功能有限，只允许用户在其预先搭建好的环境下进行开发，不支持自己搭建数据库、Tomcat等环境。因此只能选择远程连接数据库。<br>在阿里云的ECS云服务器上建立了MongoDB数据库，并创建了相应的集合。<br><img src="http://myimage-liqixin.oss-cn-beijing.aliyuncs.com/18-5-30/8921966.jpg" alt=""><br>并为数据库添加管理员用户，保证远程连接的安全性。<br><img src="http://myimage-liqixin.oss-cn-beijing.aliyuncs.com/18-5-30/66662237.jpg" alt=""><br>最后，还需要在阿里云ECS管理控制台中，将MongoDB所用的27017端口打开。<br>上述工作完成后，便可通过调用Node.js下的mongoose组件，实现对数据库的远程访问。</p>
 <h3 id="Node-js实现注册登录功能"><a href="#Node-js实现注册登录功能" class="headerlink" title="Node.js实现注册登录功能"></a>Node.js实现注册登录功能</h3><p>创建好数据库后，首先完成视图文件的编写。通过CSS搭配JavaScript，编写出注册登录的UI界面。注册、登录页面均包含一个表单，表单的action方法均指向node路由中的一个地址。在路由中，通过对数据库的访问，返回相应的参数值。</p>
 <h3 id="获取API中的数据"><a href="#获取API中的数据" class="headerlink" title="获取API中的数据"></a>获取API中的数据</h3><p>项目调用聚合数据的API获取相关数据。聚合API的数据均封装在web上的一个URL中。通过Ajax服务端/客户端异步的操作，从指定URL中，通过提交相应参数，获取返回值。API提供的返回值均为json类型的数据，由于json数据是以JavaScript语言编写的，因此大大降低了解析的难度。数据解析后，以html文档的格式将相应数据append到主页面中，从而达到异步获取数据的功能。</p>
 <h3 id="在Cloud-Studio上云端开发项目"><a href="#在Cloud-Studio上云端开发项目" class="headerlink" title="在Cloud Studio上云端开发项目"></a>在Cloud Studio上云端开发项目</h3><p>此项目完全托管在Cloud Studio云端开发IDE上，由于其服务器已经搭建好了相应环境，因此只需利用页面下的控制台输入指令，便可实现项目的部署。<br><img src="http://myimage-liqixin.oss-cn-beijing.aliyuncs.com/18-5-30/32273878.jpg" alt=""></p>
-<h3 id="项目更新日志"><a href="#项目更新日志" class="headerlink" title="项目更新日志"></a>项目更新日志</h3><h3 id="2018-5-13"><a href="#2018-5-13" class="headerlink" title="2018/5/13"></a>2018/5/13</h3><p><li>调用<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="noopener">canvas_net.js</a>，实现页面的动态背景。</li></p>
-<h3 id="2018-5-11"><a href="#2018-5-11" class="headerlink" title="2018/5/11"></a>2018/5/11</h3><p><li>添加趣图板块</li></p>
-<p><li>添加NBA板块</li></p>
-<p><li>添加星座板块</li></p>
-<p><li>不支持jsonp跨域传值的api接口，调用本地servlet间接传值</li></p>
-<h3 id="2018-5-10"><a href="#2018-5-10" class="headerlink" title="2018/5/10"></a>2018/5/10</h3><p><li>优化页面样式</li></p>
-<p><li>插入天气、万年历接口</li></p>
-<h3 id="2018-5-8"><a href="#2018-5-8" class="headerlink" title="2018/5/8"></a>2018/5/8</h3><p><li>服务器端创建MongoDB数据库，并添加管理者</li></p>
-<p><li>简单实现注册登录的功能</li></p>
-<p><li>接入聚合数据的API，利用AJAX实现主体功能</li></p>
-<h3 id="2018-5-7"><a href="#2018-5-7" class="headerlink" title="2018/5/7"></a>2018/5/7</h3><p><li>新建项目</li></p>
-<p><li>创建部分试图文件(view)</li></p>
-<p><li>插入数据库管理文件(model)</li></p>
-<p><li>定义路由，将Node.js作为控制器(control)</li></p>
+<h3 id="项目更新日志"><a href="#项目更新日志" class="headerlink" title="项目更新日志"></a>项目更新日志</h3><h3 id="2018-5-13"><a href="#2018-5-13" class="headerlink" title="2018/5/13"></a>2018/5/13</h3><p><li>调用<a href="https://github.com/hustcc/canvas-nest.js" target="_blank" rel="noopener">canvas_net.js</a>，实现页面的动态背景。</p>
+<h3 id="2018-5-11"><a href="#2018-5-11" class="headerlink" title="2018/5/11"></a>2018/5/11</h3><p><li>添加趣图板块</p>
+<p><li>添加NBA板块</p>
+<p><li>添加星座板块</p>
+<p><li>不支持jsonp跨域传值的api接口，调用本地servlet间接传值</p>
+<h3 id="2018-5-10"><a href="#2018-5-10" class="headerlink" title="2018/5/10"></a>2018/5/10</h3><p><li>优化页面样式</p>
+<p><li>插入天气、万年历接口</p>
+<h3 id="2018-5-8"><a href="#2018-5-8" class="headerlink" title="2018/5/8"></a>2018/5/8</h3><p><li>服务器端创建MongoDB数据库，并添加管理者</p>
+<p><li>简单实现注册登录的功能</p>
+<p><li>接入聚合数据的API，利用AJAX实现主体功能</p>
+<h3 id="2018-5-7"><a href="#2018-5-7" class="headerlink" title="2018/5/7"></a>2018/5/7</h3><p><li>新建项目</p>
+<p><li>创建部分试图文件(view)</p>
+<p><li>插入数据库管理文件(model)</p>
+<p><li>定义路由，将Node.js作为控制器(control)</p>
 <h2 id="项目开发时遇到的问题"><a href="#项目开发时遇到的问题" class="headerlink" title="项目开发时遇到的问题"></a>项目开发时遇到的问题</h2><h3 id="云开发平台不支持在云端搭建数据库"><a href="#云开发平台不支持在云端搭建数据库" class="headerlink" title="云开发平台不支持在云端搭建数据库"></a>云开发平台不支持在云端搭建数据库</h3><p><em>解决方法：跨平台远程访问数据库。</em><br>由于Cloud Studio所提供的云主机功能有限，只允许用户在其预先搭建好的环境下进行开发，不支持自己搭建数据库、Tomcat等环境。因此只能选择远程连接数据库。我在阿里云的ECS云服务器上建立了MongoDB数据库，并创建了相应的集合以及管理员账户，供项目可以远程访问。</p>
 <h3 id="部分API不支持传输jsonp类型的数据"><a href="#部分API不支持传输jsonp类型的数据" class="headerlink" title="部分API不支持传输jsonp类型的数据"></a>部分API不支持传输jsonp类型的数据</h3><p><em>解决方法：通过自己的服务器进行中转，将API中的json数据转成jsonp格式，再供项目调用。</em><br>Cloud Studio自动部署的web网址是在https协议下的，由于https协议安全级别较高，使用Ajax跨域访问其他web服务时，只能通过crossDomain的方法，并且返回值必须是jsonp。但部分API接口的返回值只支持json格式的数据，因此在初期调用的过程中遇到“明明能够获取到，但就是显示不出来”的问题。<br>对此，我通过在本地的Tomcat上搭建一个Servlet，实现API上的json数据转成jsonp的功能，再由Ajax调用本地服务器上对应的Servlet。</p>
 <h3 id="https协议下的web应用获取http数据出错"><a href="#https协议下的web应用获取http数据出错" class="headerlink" title="https协议下的web应用获取http数据出错"></a>https协议下的web应用获取http数据出错</h3><p><em>解决方法：浏览器设置允许加载不安全的脚本。</em><br>Cloud Studio所部署的网址建立在https协议下，在访问本地Servlet时，由于本地使用的是http协议，因此出现了数据无法传输的问题。<br>观察后发现在访问http数据时，浏览器上方会有一个小感叹号，点击后出现不安全脚本的提示。通过设置允许浏览器加载不安全的脚本后，则可以正常访问数据。<br>不过，此举只适用在电脑端，手机端由于浏览器功能权限开放得不多依旧访问不了。最佳的处理方法应该是将服务器端部署在http上，或者将Servlet部署到https上。</p>
@@ -447,7 +447,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 QixinLi
+    		&copy; 2020 QixinLi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -534,15 +534,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">ShortCuts</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">服务器技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">服务器技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">CloudStudio</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,7 +562,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color2">CloudStudio</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">ShortCuts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">安卓开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,7 +590,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">安卓开发</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">AAAI2019</a>
               </li>
             
             <div class="clearfix"></div>
