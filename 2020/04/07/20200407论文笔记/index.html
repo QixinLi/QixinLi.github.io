@@ -8,11 +8,13 @@
   <link rel="dns-prefetch" href="http://QixinLi.github.io">
   <title>论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记 | QixinLi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="AAAI2019">
+  <meta name="description" content="为短文本对话生成多样的回复这是由苏大和腾讯AI lab合作的一篇文章目前发表在AAAI2019论文及代码">
+<meta name="keywords" content="AAAI2019">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;qixinli.github.io&#x2F;2020&#x2F;04&#x2F;07&#x2F;20200407%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="QixinLi&#39;s Blog">
+<meta property="og:description" content="为短文本对话生成多样的回复这是由苏大和腾讯AI lab合作的一篇文章目前发表在AAAI2019论文及代码">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407230831.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%871.png">
@@ -20,7 +22,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%873.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;%E5%9B%BE%E7%89%874.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407232403.png">
-<meta property="og:updated_time" content="2020-04-07T15:38:11.710Z">
+<meta property="og:updated_time" content="2020-04-07T15:42:12.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;myimage-liqixin.oss-cn-beijing.aliyuncs.com&#x2F;2020-4-7&#x2F;QQ%E6%88%AA%E5%9B%BE20200407230831.png">
   
@@ -187,8 +189,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <img src="https://myimage-liqixin.oss-cn-beijing.aliyuncs.com/2020-4-7/QQ%E6%88%AA%E5%9B%BE20200407230831.png" class="">
-<a id="more"></a>
 <p>为短文本对话生成多样的回复<br>这是由苏大和腾讯AI lab合作的一篇文章<br>目前发表在AAAI2019<br><a href="https://ai.tencent.com/ailab/nlp/dialogue/" target="_blank" rel="noopener">论文及代码</a></p>
+<a id="more"></a>
 <h2 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h2><p>在短文本生成任务上，业界普遍的做法就是seq2seq模型，他是将模型的输入和输出建立为一对一的映射。<br>但是在实际场景中，一个输入往往有多个回复，也就是一对多的映射。</p>
 <p>例如：微博、Twitter</p>
 <p><li>输入：“让我们共同庆祝哈工大百年校庆”</p>
