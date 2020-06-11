@@ -6,15 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://QixinLi.github.io">
-  <title>Tag: 随笔 | QixinLi&#39;s Blog</title>
+  <title>论文《Longformer：The Long-Document Transformer》论文笔记 | QixinLi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="程序猿,暴雪玩家,美剧粉,东野死忠">
-<meta property="og:type" content="website">
-<meta property="og:title" content="QixinLi&#39;s Blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;qixinli.github.io&#x2F;tags&#x2F;%E9%9A%8F%E7%AC%94&#x2F;index.html">
+  <meta name="description" content="The Long-Document Transformer，顾名思义，就是应用在长文本场景下的Transformer。论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2004.05150本文作者是这几位大大：Iz Beltagy、Matthew E. Peters、Arman Cohan他们都来自Allen Institute for Artiﬁcial Intelligence(AI2">
+<meta name="keywords" content="arxiv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文《Longformer：The Long-Document Transformer》论文笔记">
+<meta property="og:url" content="http:&#x2F;&#x2F;qixinli.github.io&#x2F;2020&#x2F;06&#x2F;12&#x2F;20200423%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="QixinLi&#39;s Blog">
+<meta property="og:description" content="The Long-Document Transformer，顾名思义，就是应用在长文本场景下的Transformer。论文地址: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2004.05150本文作者是这几位大大：Iz Beltagy、Matthew E. Peters、Arman Cohan他们都来自Allen Institute for Artiﬁcial Intelligence(AI2">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7BRg.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq72d0.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7hJU.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq75z4.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7Lo6.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7XFK.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7vWD.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHPeI.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHEY8.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHeSg.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHmlQ.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHnyj.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHuOs.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqH3kV.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tqHN6J.jpg">
+<meta property="og:updated_time" content="2020-06-11T16:49:46.587Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;06&#x2F;12&#x2F;tq7BRg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="QixinLi&#39;s Blog" type="application/atom+xml">
   
@@ -158,286 +177,276 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20200423论文笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/13/ShortCuts/" class="archive-article-date">
-  	<time datetime="2019-01-13T12:37:42.793Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/13/ShortCuts/">捷径App——使iOS12用户的生产力爆炸式提升的神器</a>
+    <h1 class="article-title" itemprop="name">
+      论文《Longformer：The Long-Document Transformer》论文笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/06/12/20200423%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-06-11T16:30:48.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="https://s1.ax1x.com/2020/06/12/tq7BRg.jpg" class="">
+<p>The Long-Document Transformer，顾名思义，就是应用在长文本场景下的Transformer。<br>论文地址: <a href="https://arxiv.org/abs/2004.05150" target="_blank" rel="noopener">https://arxiv.org/abs/2004.05150</a><br>本文作者是这几位大大：Iz Beltagy、Matthew E. Peters、Arman Cohan<br>他们都来自Allen Institute for Artiﬁcial Intelligence(AI2)</p>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>先介绍一下这篇论文的背景。</p>
+<p>我们都知道Transformer架构很强，成功的部分原因在于自注意力机制，自注意力机制使网络能够从整个序列中捕获上下文信息</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq72d0.jpg" class="">
+<p>但是虽然自注意力机制很有效，但它所需的内存和算力会随着序列长度呈平方增长，这使得当前硬件在处理长序列的情况下不可行，或者说非常昂贵、代价很大。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq7hJU.jpg" class="">
+<p>现有的方法是将上下文缩短或者划分成为较小的序列，以限制这些序列在512的长度以内。但是这种划分可能导致重要的信息丢失。</p>
+<p>那么，为了解决这个问题，作者就提出了Longformer</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq75z4.jpg" class="">
+<p>它的attention包括窗口化的局部上下文的self attention和由终端任务激活的全局attention。</p>
+<p>局部attention用来建立局部的上下文表示，全局attention用来建立完整的序列表示以进行预测。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>前面提到，现有的注意力计算方法时间和空间复杂度都是O(n²)，这使得难以在长序列上进行训练。</p>
+<p>为了解决这个问题，作者根据一个“attention pattern”来稀疏完整的自注意力矩阵</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq7Lo6.jpg" class="">
+<p>图中第一个是全自注意力矩阵，后面三个是作者提到的稀疏后的注意力矩阵</p>
+<p>下面我们分别来介绍这三个attention pattern。</p>
+<h2 id="Sliding-window-attention"><a href="#Sliding-window-attention" class="headerlink" title="Sliding window attention"></a>Sliding window attention</h2><p>首先介绍一下滑动窗口attention，顾名思义，就是围绕每一个token采用固定大小的窗口计算局部注意力。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq7XFK.jpg" class="">
+<p>假设窗口大小是w，序列长度是n，那么这个pattern的计算复杂度就是O(n*w)</p>
+<p>为了效率起见，w相比于n应该是个比较小的数值。</p>
+<p>我们知道transformer无论编码还是解码器都是由l层堆叠形成的。</p>
+<p>那么作者认为，根据应用程序的不同，为每一层使用不同的w值对平衡效率和模型的表示能力可能会有所帮助。</p>
+<h2 id="Dilated-Sliding-Window"><a href="#Dilated-Sliding-Window" class="headerlink" title="Dilated Sliding Window"></a>Dilated Sliding Window</h2><p>空洞滑动窗口</p>
+<img src="https://s1.ax1x.com/2020/06/12/tq7vWD.jpg" class="">
+<p>窗口的缝隙大小是d，假设window size是w，transformer的层数是l，那么窗口能覆盖到的接受范围就是l<em>d</em>w。</p>
+<p>那么，在mutilhead attention中，作者设置允许一些没有空洞的head专注于局部上下文，而其他具有空洞的head专注于较长的上下文，最终发现这样的做法能提升整体的表现</p>
+<h2 id="Global-Attention"><a href="#Global-Attention" class="headerlink" title="Global Attention"></a>Global Attention</h2><p>最后，介绍一下全局attention。</p>
+<p>对于一些任务，比如说QA，需要通过question去找document里的答案，因此局部注意力在这种情况下就不适用。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHPeI.jpg" class="">
+<p>因此，作者就在一些预先选择的位置上(图中标红)添加了全局注意力。在这些位置上，会对整个序列做attention。</p>
+<p>那么这些位置怎么去选择呢，其实要根据具体任务决定。</p>
+<p>作者举了几个例子，在分类任务上，这个global attention就落在[CLS]标签上，在QA任务上，就在整个问句上计算global attention。</p>
+<p>可以看出，global attention是视具体任务而定的，换个任务可能之前的做法就不适用了，但作者认为，这仍然比现有的trunk或者shorten的做法要简单很多。</p>
+<h2 id="Tensor-Virtual-Machine-TVM"><a href="#Tensor-Virtual-Machine-TVM" class="headerlink" title="Tensor Virtual Machine (TVM)"></a>Tensor Virtual Machine (TVM)</h2><p>另外，值得一提的是，作者用TVM构建了自己的自定义CUDA kernel。这使得longformer的速度与full self-attention的操作几乎一样快，而且显存占用要小得多。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHEY8.jpg" class="">
+<h2 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h2><p>下面先来看一下实验的一些设置.</p>
+<p>模型采用字符级别的自回归语言模型。</p>
+<p>数据集用的是text8和enwik8 (Mahoney, 2009)。</p>
+<p>训练：从理想状况来讲，训练时应该选用gpu所能承受的最大的window size和seq len。但是作者发现，在学习更长的上下文之前，模型需要大量的梯度更新才能首先学好局部的上下文。</p>
+<p>因此这里采用一种阶段式的训练方式，在第一阶段，从较短的序列长度和窗口大小开始，然后在每个后续阶段，将窗口大小和序列长度增加一倍，并将学习率减半。这样可以快速训练，同时将最慢的部分放到最后。</p>
+<p>作者这里一共训练了5个阶段，第一个阶段seq len是2048，最后一个阶段是23040（受到gpu显存的限制，不能再高了）</p>
+<p>在评估过程中，作者将数据集分为大小为32,256的重叠序列，步长为512，并报告序列上最后512个token的性能。</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>作者这里使用了两种不同的模型大小，小的有12层，大的有30层。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHeSg.jpg" class="">
+<p>在小的模型上，long former比其他模型都要好。这也证明了这个模型的有效性。</p>
+<p>在大的模型上，比18层的transformerxl要好，跟第二个和第三个齐平，不如第四、五两个。但作者说明，这两个模型并不适用于pretrain-finetune的模式。</p>
+<p>下面这个表展示了作者在不同attention pattern的配置上的实验结果。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHmlQ.jpg" class="">
+<p>表格的上半部分展示了，递增窗口大小的表现最好，递减窗口大小表现最差，使用固定窗口的表现介于两者之间。</p>
+<p>表格的下半部分展示了使不使用空洞窗口的区别，可以看出对两个head增加一些空洞比完全不使用空洞窗口表现要好一些。</p>
+<h2 id="Pretraining-and-Finetuning"><a href="#Pretraining-and-Finetuning" class="headerlink" title="Pretraining and Finetuning"></a>Pretraining and Finetuning</h2><p>本文的预训练使用的同样是MLM，并且是在RoBERTa的checkpoint后继续训练。</p>
+<p>在所有layer上使用512window size的滑动窗口attention，这么设置是为了与RoBERTa的seq len相匹配。</p>
+<p>为了支持长文本，作者添加了额外的position embedding到4096的大小，此外，为了利用RoBERTa的权重，作者通过多次复制其512个位置嵌入来对其进行初始化。</p>
+<p>下面这个表中展示了预训练使用的数据集。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHnyj.jpg" class="">
+<p>上面两个是RoBERTa预训练同样用到的，下面两个是作者新增的，并且各选了三分之一用作预训练。</p>
+<h2 id="MLM-Pretraining"><a href="#MLM-Pretraining" class="headerlink" title="MLM Pretraining"></a>MLM Pretraining</h2><img src="https://s1.ax1x.com/2020/06/12/tqHuOs.jpg" class="">
+<p>第一行在RoBERTa base上的1.846与RoBERTa论文中的1.880相当，这表明本文的训练语料与训练RoBERTa的语料有相似的分布。</p>
+<p>第二行展示了longformer在预训练之前使用随机初始化的position embedding的表现。下一行是在预训练之前使用从RoBERTa中拷贝的position embedding的表现。</p>
+<p>RoBERTa初始化的表现和RoBERTa本身的表现差距较小，这也表明了滑动窗口attention是可以使用RoBERTa的权重的。</p>
+<p>最后两行分别是训练两千步和6万5千步之后的结果，可以看出效果是越来越好，这也说明了模型正在学习如何更好地利用滑动窗口attention和更长的上下文。</p>
+<h2 id="Finetuning"><a href="#Finetuning" class="headerlink" title="Finetuning"></a>Finetuning</h2><p>本文finetune使用的数据集</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqH3kV.jpg" class="">
+<p>第一行是数据集里头序列的平均长度，第二行是第95个百分位的数据的长度。</p>
+<p>下面这个表是longformer在具体的下游任务上的训练结果与RoBERTa的一个对比。</p>
+<img src="https://s1.ax1x.com/2020/06/12/tqHN6J.jpg" class="">
+<p>其中QA任务中，在问题和候选答案的位置使用全局attention。</p>
+<p>共指消解任务上没有使用全局attention。</p>
+<p>文本分类任务中，在[CLS]标签上用了全局attention。</p>
+<p>可以看出，所有结果都是优于RoBERTa的。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Longformer的代码和预训练模型也已经公布啦！</p>
+<p><a href="https://github.com/allenai/longformer" target="_blank" rel="noopener">https://github.com/allenai/longformer</a></p>
+<h2 id="知乎专栏"><a href="#知乎专栏" class="headerlink" title="知乎专栏"></a>知乎专栏</h2><p>同名文章已发表在知乎专栏《机器学习算法与自然语言处理》<br><a href="https://zhuanlan.zhihu.com/p/134748587" target="_blank" rel="noopener">《Longformer: The Long-Document Transformer》论文笔记</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" target="_blank" rel="noopener" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃辣条<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/PersonalData/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">ShortCuts</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">arxiv</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/code/" class="article-tag-list-link color5">code</a>
+        			<a href="/categories/论文笔记/" class="article-tag-list-link color5">论文笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://qixinli.github.io/2020/06/12/20200423%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/07/20200407%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论文《Generating Multiple Diverse Responses for Short-Text Conversation》阅读笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/07/CloudStudio/" class="archive-article-date">
-  	<time datetime="2018-05-07T10:23:36.054Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/07/CloudStudio/">Cloud Studio云端开发IDE体验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">CloudStudio</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/code/" class="article-tag-list-link color5">code</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/17/Aliyun-JSP-login/" class="archive-article-date">
-  	<time datetime="2017-10-17T12:43:48.081Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/17/Aliyun-JSP-login/">在阿里云ECS服务器上搭建数据库</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">服务器技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  <!-- UY BEGIN -->
+    <section id="comments">
+        <!-- 来必力City版安装代码 -->
+        	<p style="color:#706c6c ;text-align:center;">来必力目前使用QQ或微信登录会有bug，建议大家使用微博或其他社交账号登录。</p>
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk0NS82NTEw">
+          <script type="text/javascript">
+           (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
 
-          
+               if (typeof LivereTower === 'function') { return; }
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/04/AfterWatchDespicableMe3/" class="archive-article-date">
-  	<time datetime="2017-08-04T09:42:07.105Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/04/AfterWatchDespicableMe3/">神偷奶爸3——打动我的，并不是剧情</a>
-    </h1>
-  
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/02/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-02T10:08:44.230Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/code/" class="article-tag-list-link color5">code</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+    <!-- City版安装代码已完成 -->
+    </section>
+  <!-- UY END -->
 
 
           </div>
@@ -460,9 +469,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
